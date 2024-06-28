@@ -8,5 +8,5 @@ resource "aws_dynamodb_table" "visitors_count" {
     type = "S"
   }
 
-  
+
 }

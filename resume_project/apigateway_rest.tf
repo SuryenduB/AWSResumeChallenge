@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "countVisitors" {
-  name = "countVisitors"
+  name        = "countVisitors"
   description = "My API Gateway to CountVisitors"
 
   endpoint_configuration {
@@ -9,14 +9,14 @@ resource "aws_api_gateway_rest_api" "countVisitors" {
 
 resource "aws_api_gateway_resource" "root" {
   rest_api_id = aws_api_gateway_rest_api.countVisitors.id
-  parent_id = aws_api_gateway_rest_api.countVisitors.root_resource_id
-  path_part = "count"
+  parent_id   = aws_api_gateway_rest_api.countVisitors.root_resource_id
+  path_part   = "count"
 }
 
 resource "aws_api_gateway_method" "proxy" {
-  rest_api_id = aws_api_gateway_rest_api.countVisitors.id
-  resource_id = aws_api_gateway_resource.root.id
-  http_method = "POST"
+  rest_api_id   = aws_api_gateway_rest_api.countVisitors.id
+  resource_id   = aws_api_gateway_resource.root.id
+  http_method   = "POST"
   authorization = "NONE"
 }
 
@@ -38,7 +38,7 @@ resource "aws_api_gateway_method_response" "proxy" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = true,
     "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
   }
 }
 
@@ -49,12 +49,12 @@ resource "aws_api_gateway_integration_response" "proxy" {
   status_code = aws_api_gateway_method_response.proxy.status_code
 
 
-   //cors
+  //cors
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" =  "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST,PUT'",
-    "method.response.header.Access-Control-Allow-Origin" = "'*'"
-}
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
 
   depends_on = [
     aws_api_gateway_method.proxy,

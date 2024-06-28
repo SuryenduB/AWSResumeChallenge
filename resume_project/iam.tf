@@ -3,7 +3,7 @@ data "aws_iam_policy_document" "allow_dynamodb_table_operations" {
     effect = "Allow"
     actions = [
       "dynamodb:PutItem",
-      
+
       "dynamodb:GetItem",
       "dynamodb:Scan"
     ]
@@ -32,10 +32,10 @@ resource "aws_iam_role_policy_attachment" "lambda_basic" {
 }
 
 resource "aws_lambda_permission" "apigw_lambda" {
-  statement_id = "AllowExecutionFromAPIGateway"
-  action = "lambda:InvokeFunction"
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.test_lambda.function_name
-  principal = "apigateway.amazonaws.com"
+  principal     = "apigateway.amazonaws.com"
 
   source_arn = "${aws_api_gateway_rest_api.countVisitors.execution_arn}/*/*/*"
 }

@@ -10,11 +10,11 @@
 #   api_id           = aws_apigatewayv2_api.requestCount.id
 #   integration_type = "AWS_PROXY"
 
-  
+
 #   description               = "Lambda example"
 #   integration_method        = "POST"
 #   integration_uri           = aws_lambda_function.test_lambda.arn
-  
+
 # }
 
 # resource "aws_apigatewayv2_route" "count" {

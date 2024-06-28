@@ -18,14 +18,14 @@ resource "aws_iam_role" "iam_for_lambda" {
 
 
 resource "aws_lambda_function" "test_lambda" {
-  filename = "index.zip"
-  function_name = var.lambda_function_name
-  role          = aws_iam_role.iam_for_lambda.arn
-  runtime       = "python3.12"
-  handler = "index.lambda_handler"
+  filename         = "index.zip"
+  function_name    = var.lambda_function_name
+  role             = aws_iam_role.iam_for_lambda.arn
+  runtime          = "python3.12"
+  handler          = "index.lambda_handler"
   source_code_hash = data.archive_file.lambda_package.output_base64sha256
 
-  
+
 }
 
 data "aws_iam_policy_document" "lambda_dynamodb" {
@@ -33,9 +33,9 @@ data "aws_iam_policy_document" "lambda_dynamodb" {
     effect = "Allow"
 
     actions = [
-      
+
       "dynamodb:PutItem",
-      
+
       "dynamodb:GetItem",
       "dynamodb:Scan"
     ]
