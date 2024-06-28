@@ -4,12 +4,12 @@ locals {
 }
 
 resource "aws_cloudfront_distribution" "this" {
-  
+
   enabled = true
-  
+
   origin {
-    origin_id                = local.s3_origin_id
-    domain_name              = local.s3_domain_name
+    origin_id   = local.s3_origin_id
+    domain_name = local.s3_domain_name
     custom_origin_config {
       http_port              = 80
       https_port             = 443
@@ -19,7 +19,7 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   default_cache_behavior {
-    
+
     target_origin_id = local.s3_origin_id
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
@@ -43,11 +43,11 @@ resource "aws_cloudfront_distribution" "this" {
       restriction_type = "none"
     }
   }
-  
+
   viewer_certificate {
     cloudfront_default_certificate = true
   }
 
   price_class = "PriceClass_200"
-  
+
 }

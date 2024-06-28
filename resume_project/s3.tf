@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "sury-resume-bucket" {
-  bucket = "sury-resume-bucket"
+  bucket = var.s3_name
 
 }
 
