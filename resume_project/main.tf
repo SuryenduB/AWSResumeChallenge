@@ -1,5 +1,12 @@
 # Configure AWS provider
 provider "aws" {
-  # Replace with your desired region
+  region = "eu-central-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-bucket-resume-project"
+    key    = "state/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
