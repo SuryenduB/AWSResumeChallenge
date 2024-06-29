@@ -6,16 +6,18 @@ locals {
 resource "aws_cloudfront_distribution" "this" {
 
   enabled = true
+  default_root_object = "index.html"
 
   origin {
     origin_id   = local.s3_origin_id
-    domain_name = local.s3_domain_name
+    domain_name = aws_s3_bucket.sury-resume-bucket.bucket_regional_domain_name
     custom_origin_config {
       http_port              = 80
       https_port             = 443
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1"]
     }
+    
   }
 
   default_cache_behavior {
