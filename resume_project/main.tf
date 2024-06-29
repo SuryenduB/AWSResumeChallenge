@@ -6,7 +6,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "terraform-state-bucket-resume-project"
-    key    = "state/terraform.tfstate"
+    key    = "state/AWS/terraform.tfstate"
     region = "eu-central-1"
   }
 }

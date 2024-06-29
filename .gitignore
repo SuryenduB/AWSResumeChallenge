@@ -32,3 +32,4 @@ terraform.rc
 
 # Ignore provider lock file
 .terraform.lock.hcl
+.DS_Store
