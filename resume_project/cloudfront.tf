@@ -5,7 +5,7 @@ locals {
 
 resource "aws_cloudfront_distribution" "this" {
 
-  enabled = true
+  enabled             = true
   default_root_object = "index.html"
 
   origin {
@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "this" {
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1"]
     }
-    
+
   }
 
   default_cache_behavior {
