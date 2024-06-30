@@ -3,7 +3,7 @@ import json
 
 def lambda_handler(event, context):
     dynamodb = boto3.client('dynamodb')
-    table_name = 'visitors_count'  # Replace with your actual table name
+    table_name = 'visitorscount'  # Replace with your actual table name
     number_to_update_s = '0'
     
 
